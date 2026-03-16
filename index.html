@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KYRIX - Marca de Ropa Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 100px 20px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #ff6b6b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #cccccc;
+            margin-bottom: 30px;
+        }
+
+        .hero-btn {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .hero-btn:hover {
+            background-color: #ff5252;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            margin: 60px 0;
+        }
+
+        section h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #ff6b6b;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .product {
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #2d2d2d;
+        }
+
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .product h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .product p {
+            color: #aaaaaa;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #ff5252;
+        }
+
+        .about {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .about p {
+            color: #cccccc;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        footer {
+            background-color: #0a0a0a;
+            border-top: 1px solid #2d2d2d;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        footer p {
+            color: #888888;
+            margin-bottom: 10px;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #ff6b6b;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ff5252;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            section h2 {
+                font-size: 28px;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">KYRIX</a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#aboutus">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <h1>KYRIX</h1>
+        <p>Ropa Premium para tu Estilo de Vida</p>
+        <button class="hero-btn">Descubre Nuestros Productos</button>
+    </section>
+
+    <!-- Productos -->
+    <section class="container" id="productos">
+        <h2>Nuestros Productos</h2>
+        <div class="products">
+            <div class="product">
+                <div class="product-image">👕</div>
+                <h3>Camiseta Clásica</h3>
+                <p>Algodón 100% - Cómoda y duradera</p>
+                <div class="price">25€</div>
+                <button class="btn">Comprar</button>
+            </div>
+
+            <div class="product">
+                <div class="product-image">👔</div>
+                <h3>Sudadera Premium</h3>
+                <p>Tela suave y resistente - Perfecta para el invierno</p>
+                <div class="price">45€</div>
+                <button class="btn">Comprar</button>
+            </div>
+
+            <div class="product">
+                <div class="product-image">👖</div>
+                <h3>Pantalones Ajustados</h3>
+                <p>Fit moderno y cómodo - Disponible en varios colores</p>
+                <div class="price">35€</div>
+                <button class="btn">Comprar</button>
+            </div>
+
+            <div class="product">
+                <div class="product-image">🧥</div>
+                <h3>Chaqueta Moderna</h3>
+                <p>Impermeable y transpirable - Ideal para cualquier estación</p>
+                <div class="price">65€</div>
+                <button class="btn">Comprar</button>
+            </div>
+
+            <div class="product">
+                <div class="product-image">🧢</div>
+                <h3>Gorra KYRIX</h3>
+                <p>Ajuste regulable - Estilo casual perfecto</p>
+                <div class="price">15€</div>
+                <button class="btn">Comprar</button>
+            </div>
+
+            <div class="product">
+                <div class="product-image">🧤</div>
+                <h3>Accesorios Premium</h3>
+                <p>Cinturones y pulseras - Complementa tu outfit</p>
+                <div class="price">20€</div>
+                <button class="btn">Comprar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section class="container" id="aboutus">
+        <h2>Sobre Nosotros</h2>
+        <div class="about">
+            <p>
+                In KYRIX, creemos que la ropa debe ser más que solo tela. Es una forma de expresarse, 
+                de mostrar tu personalidad y tu estilo único al mundo.
+            </p>
+            <p>
+                Nuestros productos están diseñados con calidad premium, utilizando los mejores materiales 
+                y técnicas de fabricación para asegurar comodidad y durabilidad en cada pieza.
+            </p>
+            <p>
+                Desde 2024, KYRIX se ha convertido en la marca favorita de miles de clientes que buscan 
+                ropa de calidad, moderna y asequible. ¡Únete a nuestra comunidad hoy!
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <h3>KYRIX</h3>
+        <p>&copy; 2026 KYRIX. Todos los derechos reservados.</p>
+        <p>Correo: info@kyrix.com | Teléfono: +34 XXX XXX XXX</p>
+        
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">TikTok</a>
+        </div>
+    </footer>
+</body>
+</html>
