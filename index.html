@@ -6,12 +6,6 @@
     <title>KYRIX - Tienda Moderna</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
             --primary: #2563eb;
             --secondary: #1e40af;
@@ -21,6 +15,8 @@
             --text: #334155;
             --shadow: rgba(0, 0, 0, 0.1);
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -32,7 +28,6 @@
         /* Header */
         header {
             background: var(--dark);
-            color: var(--light);
             padding: 1rem 2rem;
             position: fixed;
             top: 0;
@@ -63,9 +58,7 @@
             transition: color 0.3s ease;
         }
 
-        .cart-icon:hover {
-            color: var(--primary);
-        }
+        .cart-icon:hover { color: var(--primary); }
 
         .cart-count {
             position: absolute;
@@ -89,7 +82,6 @@
             color: var(--light);
             padding: 120px 2rem 80px;
             text-align: center;
-            position: relative;
         }
 
         .hero h1 {
@@ -109,7 +101,7 @@
             margin: 0 auto 2rem;
         }
 
-        .hero-btn {
+        .btn {
             background: var(--primary);
             color: var(--light);
             padding: 1rem 2rem;
@@ -119,9 +111,11 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .hero-btn:hover {
+        .btn:hover {
             background: var(--secondary);
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
@@ -152,7 +146,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-bottom: 3rem;
         }
 
         .product {
@@ -197,13 +190,9 @@
             transition: left 0.5s;
         }
 
-        .product:hover .product-image::before {
-            left: 100%;
-        }
+        .product:hover .product-image::before { left: 100%; }
 
-        .product-content {
-            padding: 1.5rem;
-        }
+        .product-content { padding: 1.5rem; }
 
         .product-category {
             color: var(--primary);
@@ -240,21 +229,9 @@
             color: var(--primary);
         }
 
-        .btn {
-            background: var(--primary);
-            color: var(--light);
+        .product .btn {
             padding: 0.6rem 1.2rem;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
             font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .btn:hover {
-            background: var(--secondary);
-            transform: translateY(-2px);
         }
 
         /* Cart */
@@ -299,9 +276,7 @@
             transition: color 0.3s ease;
         }
 
-        .cart-close:hover {
-            color: var(--primary);
-        }
+        .cart-close:hover { color: var(--primary); }
 
         .cart-items {
             max-height: 300px;
@@ -316,11 +291,9 @@
             border-bottom: 1px solid #334155;
         }
 
-        .cart-item:last-child {
-            border-bottom: none;
-        }
+        .cart-item:last-child { border-bottom: none; }
 
-        .cart-item-info h4 {
+        .cart-item h4 {
             font-size: 0.9rem;
             margin-bottom: 0.2rem;
         }
@@ -344,14 +317,8 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
+            .hero h1 { font-size: 2.5rem; }
+            .products-grid { grid-template-columns: 1fr; }
             .cart {
                 left: 20px;
                 right: 20px;
@@ -366,10 +333,7 @@
     <header>
         <nav>
             <div class="logo">KYRIX</div>
-            <div class="cart-icon" onclick="toggleCart()">
-                🛒
-                <span class="cart-count" id="cart-count">0</span>
-            </div>
+            <div class="cart-icon" onclick="toggleCart()">🛒<span class="cart-count" id="cart-count">0</span></div>
         </nav>
     </header>
 
@@ -378,7 +342,7 @@
         <div class="container">
             <h1>KYRIX</h1>
             <p>Descubre productos premium con diseño moderno y tecnología avanzada</p>
-            <button class="hero-btn" onclick="scrollToProducts()">Ver Productos</button>
+            <button class="btn" onclick="scrollToProducts()">Ver Productos</button>
         </div>
     </section>
 
@@ -386,126 +350,8 @@
     <section class="products" id="products">
         <div class="container">
             <h2>Productos Destacados</h2>
-            <div class="products-grid">
-                <!-- Tecnología -->
-                <div class="product" data-category="tech">
-                    <div class="product-image">📱</div>
-                    <div class="product-content">
-                        <div class="product-category">Tecnología</div>
-                        <h3>Smartphone Pro</h3>
-                        <p>Cámara avanzada, batería de larga duración, diseño elegante</p>
-                        <div class="product-footer">
-                            <span class="price">899€</span>
-                            <button class="btn" onclick="addToCart('Smartphone Pro', 899)">Agregar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product" data-category="tech">
-                    <div class="product-image">⌚</div>
-                    <div class="product-content">
-                        <div class="product-category">Tecnología</div>
-                        <h3>Smartwatch Elite</h3>
-                        <p>Monitoreo de salud, GPS integrado, resistente al agua</p>
-                        <div class="product-footer">
-                            <span class="price">349€</span>
-                            <button class="btn" onclick="addToCart('Smartwatch Elite', 349)">Agregar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product" data-category="tech">
-                    <div class="product-image">🎧</div>
-                    <div class="product-content">
-                        <div class="product-category">Tecnología</div>
-                        <h3>Auriculares Premium</h3>
-                        <p>Cancelación de ruido, sonido Hi-Fi, batería de 30 horas</p>
-                        <div class="product-footer">
-                            <span class="price">199€</span>
-                            <button class="btn" onclick="addToCart('Auriculares Premium', 199)">Agregar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hogar -->
-                <div class="product" data-category="home">
-                    <div class="product-image">🏠</div>
-                    <div class="product-content">
-                        <div class="product-category">Hogar</div>
-                        <h3>Robot Aspirador</h3>
-                        <p>Navegación inteligente, control por app, limpieza automática</p>
-                        <div class="product-footer">
-                            <span class="price">399€</span>
-                            <button class="btn" onclick="addToCart('Robot Aspirador', 399)">Agregar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product" data-category="home">
-                    <div class="product-image">💡</div>
-                    <div class="product-content">
-                        <div class="product-category">Hogar</div>
-                        <h3>Bombillas Inteligentes</h3>
-                        <p>Control por voz, 16 millones de colores, ahorro energético</p>
-                        <div class="product-footer">
-                            <span class="price">49€</span>
-                            <button class="btn" onclick="addToCart('Bombillas Inteligentes', 49)">Agregar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product" data-category="home">
-                    <div class="product-image">🍳</div>
-                    <div class="product-content">
-                        <div class="product-category">Hogar</div>
-                        <h3>Cafetera Automática</h3>
-                        <p>Molienda integrada, espuma perfecta, programación semanal</p>
-                        <div class="product-footer">
-                            <span class="price">299€</span>
-                            <button class="btn" onclick="addToCart('Cafetera Automática', 299)">Agregar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Moda -->
-                <div class="product" data-category="fashion">
-                    <div class="product-image">👔</div>
-                    <div class="product-content">
-                        <div class="product-category">Moda</div>
-                        <h3>Traje Ejecutivo</h3>
-                        <p>Lana italiana premium, corte perfecto, colores clásicos</p>
-                        <div class="product-footer">
-                            <span class="price">599€</span>
-                            <button class="btn" onclick="addToCart('Traje Ejecutivo', 599)">Agregar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product" data-category="fashion">
-                    <div class="product-image">👟</div>
-                    <div class="product-content">
-                        <div class="product-category">Moda</div>
-                        <h3>Zapatos Deportivos</h3>
-                        <p>Amortiguación avanzada, transpirables, diseño moderno</p>
-                        <div class="product-footer">
-                            <span class="price">149€</span>
-                            <button class="btn" onclick="addToCart('Zapatos Deportivos', 149)">Agregar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product" data-category="fashion">
-                    <div class="product-image">👜</div>
-                    <div class="product-content">
-                        <div class="product-category">Moda</div>
-                        <h3>Bolso de Cuero</h3>
-                        <p>Cuero genuino, múltiples compartimentos, diseño elegante</p>
-                        <div class="product-footer">
-                            <span class="price">249€</span>
-                            <button class="btn" onclick="addToCart('Bolso de Cuero', 249)">Agregar</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be loaded here -->
             </div>
         </div>
     </section>
@@ -516,106 +362,122 @@
             <h3 class="cart-title">Carrito de Compras</h3>
             <span class="cart-close" onclick="toggleCart()">×</span>
         </div>
-        <div class="cart-items" id="cart-items">
-            <!-- Items will be added here -->
-        </div>
-        <div class="cart-total" id="cart-total">
-            <h3>Total: 0€</h3>
-        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-total" id="cart-total"><h3>Total: 0€</h3></div>
     </div>
 
     <script>
+        // Data
+        const products = [
+            { id: 1, name: 'Smartphone Pro', price: 899, category: 'Tecnología', emoji: '📱', desc: 'Cámara avanzada, batería de larga duración' },
+            { id: 2, name: 'Smartwatch Elite', price: 349, category: 'Tecnología', emoji: '⌚', desc: 'Monitoreo de salud, GPS integrado' },
+            { id: 3, name: 'Auriculares Premium', price: 199, category: 'Tecnología', emoji: '🎧', desc: 'Cancelación de ruido, sonido Hi-Fi' },
+            { id: 4, name: 'Robot Aspirador', price: 399, category: 'Hogar', emoji: '🏠', desc: 'Navegación inteligente, control por app' },
+            { id: 5, name: 'Bombillas Inteligentes', price: 49, category: 'Hogar', emoji: '💡', desc: 'Control por voz, 16 millones de colores' },
+            { id: 6, name: 'Cafetera Automática', price: 299, category: 'Hogar', emoji: '🍳', desc: 'Molienda integrada, espuma perfecta' },
+            { id: 7, name: 'Traje Ejecutivo', price: 599, category: 'Moda', emoji: '👔', desc: 'Lana italiana premium, corte perfecto' },
+            { id: 8, name: 'Zapatos Deportivos', price: 149, category: 'Moda', emoji: '👟', desc: 'Amortiguación avanzada, transpirables' },
+            { id: 9, name: 'Bolso de Cuero', price: 249, category: 'Moda', emoji: '👜', desc: 'Cuero genuino, múltiples compartimentos' }
+        ];
+
         let cart = [];
         let cartCount = 0;
 
-        function addToCart(productName, price) {
-            cart.push({ name: productName, price: price });
-            cartCount++;
-            updateCartUI();
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            setupScrollObserver();
+            setupAutoCartFill();
+        });
 
-            // Show cart briefly
-            const cartElement = document.getElementById('cart');
-            cartElement.classList.add('visible');
-            setTimeout(() => {
-                cartElement.classList.remove('visible');
-            }, 2000);
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = products.map(product => `
+                <div class="product" data-category="${product.category.toLowerCase()}">
+                    <div class="product-image">${product.emoji}</div>
+                    <div class="product-content">
+                        <div class="product-category">${product.category}</div>
+                        <h3>${product.name}</h3>
+                        <p>${product.desc}</p>
+                        <div class="product-footer">
+                            <span class="price">${product.price}€</span>
+                            <button class="btn" onclick="addToCart(${product.id})">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                cart.push(product);
+                cartCount++;
+                updateCartUI();
+                showCartBriefly();
+            }
         }
 
         function updateCartUI() {
             document.getElementById('cart-count').textContent = cartCount;
 
             const cartItems = document.getElementById('cart-items');
-            cartItems.innerHTML = '';
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
 
-            let total = 0;
-            cart.forEach((item, index) => {
-                total += item.price;
-                cartItems.innerHTML += `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <h4>${item.name}</h4>
-                        </div>
-                        <span class="cart-item-price">${item.price}€</span>
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div>
+                        <h4>${item.name}</h4>
                     </div>
-                `;
-            });
+                    <span class="cart-item-price">${item.price}€</span>
+                </div>
+            `).join('');
 
             document.getElementById('cart-total').innerHTML = `<h3>Total: ${total}€</h3>`;
         }
 
         function toggleCart() {
-            const cartElement = document.getElementById('cart');
-            cartElement.classList.toggle('visible');
+            document.getElementById('cart').classList.toggle('visible');
+        }
+
+        function showCartBriefly() {
+            const cartEl = document.getElementById('cart');
+            cartEl.classList.add('visible');
+            setTimeout(() => cartEl.classList.remove('visible'), 2000);
         }
 
         function scrollToProducts() {
             document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        function setupScrollObserver() {
+            const observer = new IntersectionObserver(
+                entries => entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                }),
+                { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+            );
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+            document.querySelectorAll('.product').forEach(product => observer.observe(product));
+        }
+
+        function setupAutoCartFill() {
+            let lastScrollPercent = 0;
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = Math.floor((scrollTop / docHeight) * 100);
+
+                if (scrollPercent > lastScrollPercent && scrollPercent % 15 === 0 && cart.length < 3) {
+                    const availableProducts = products.filter(p => !cart.find(c => c.id === p.id));
+                    if (availableProducts.length > 0) {
+                        const randomProduct = availableProducts[Math.floor(Math.random() * availableProducts.length)];
+                        addToCart(randomProduct.id);
+                    }
                 }
+                lastScrollPercent = scrollPercent;
             });
-        }, observerOptions);
-
-        // Observe all products
-        document.querySelectorAll('.product').forEach(product => {
-            observer.observe(product);
-        });
-
-        // Auto-fill cart as user scrolls (simulated behavior)
-        let scrollProgress = 0;
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-
-            // Add items to cart based on scroll progress
-            const targetItems = Math.floor((scrollPercent / 10)); // Add item every 10% scroll
-
-            if (targetItems > cart.length && cart.length < 3) {
-                const products = [
-                    { name: 'Smartphone Pro', price: 899 },
-                    { name: 'Smartwatch Elite', price: 349 },
-                    { name: 'Auriculares Premium', price: 199 }
-                ];
-
-                if (cart.length < products.length) {
-                    const newItem = products[cart.length];
-                    cart.push(newItem);
-                    cartCount++;
-                    updateCartUI();
-                }
-            }
-        });
+        }
     </script>
 </body>
 </html>
