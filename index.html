@@ -111,7 +111,25 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.75rem;
+    }
+
+    .lang-select select {
+      width: 62px;
+      padding: 0.55rem 0.6rem;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: transform var(--transition), background var(--transition);
+    }
+
+    .lang-select select:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.12);
     }
 
     .cart-button {
@@ -866,11 +884,20 @@
         <span aria-hidden="true" style="width: 20px; height: 2px; background: currentColor; border-radius: 2px;"></span>
       </button>
       <nav aria-label="Main navigation">
-        <a class="nav-link" href="#hero">Home</a>
-        <a class="nav-link" href="#featured">Shop</a>
-        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#hero" data-i18n="home">Inicio</a>
+        <a class="nav-link" href="#featured" data-i18n="shop">Tienda</a>
+        <a class="nav-link" href="#about" data-i18n="about">Sobre nosotros</a>
       </nav>
       <div class="nav-actions">
+        <div class="lang-select">
+          <select id="langSelect" aria-label="Language">
+            <option value="es">ES</option>
+            <option value="en">EN</option>
+            <option value="fr">FR</option>
+            <option value="it">IT</option>
+            <option value="ma">MA</option>
+          </select>
+        </div>
         <button class="cart-button" id="cartBtn" aria-label="Abrir carrito">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 6h15l-1.5 9h-13L6 6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -881,9 +908,9 @@
         </button>
       </div>
       <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-        <a href="#hero" data-close-menu>Home</a>
-        <a href="#featured" data-close-menu>Shop</a>
-        <a href="#about" data-close-menu>About</a>
+        <a href="#hero" data-close-menu data-i18n="home">Inicio</a>
+        <a href="#featured" data-close-menu data-i18n="shop">Tienda</a>
+        <a href="#about" data-close-menu data-i18n="about">Sobre nosotros</a>
       </div>
     </div>
   </header>
@@ -893,9 +920,9 @@
     <section class="hero" id="hero">
       <div class="hero-inner">
         <h1 class="hero-title">KYRIX</h1>
-        <p class="hero-subtitle">Streetwear for the future — minimal pieces, premium feel.</p>
+        <p class="hero-subtitle" data-i18n="heroSubtitle">Streetwear para el futuro — piezas minimalistas, sensación premium.</p>
         <div class="hero-actions">
-          <button class="btn-primary" data-scroll-to="#featured">Shop Now</button>
+          <button class="btn-primary" data-scroll-to="#featured" data-i18n="shopNow">Comprar ahora</button>
         </div>
       </div>
     </section>
@@ -903,8 +930,8 @@
     <!-- Featured products -->
     <section class="fade-up" id="featured">
       <header>
-        <h2 class="section-title">Featured drops</h2>
-        <p class="section-subtitle">Discover the pieces that define the season. Every item is designed for a clean fit and effortless style.</p>
+        <h2 class="section-title" data-i18n="featuredTitle">Drops destacados</h2>
+        <p class="section-subtitle" data-i18n="featuredSubtitle">Descubre las piezas que marcan la temporada. Cada prenda está diseñada para un estilo impecable.</p>
       </header>
       <div class="featured-grid" id="featuredGrid"></div>
     </section>
@@ -912,8 +939,8 @@
     <!-- Products grid -->
     <section class="fade-up" id="products">
       <header>
-        <h2 class="section-title">All products</h2>
-        <p class="section-subtitle">Browse our full collection — designed for comfort, built to last.</p>
+        <h2 class="section-title" data-i18n="allProductsTitle">Todos los productos</h2>
+        <p class="section-subtitle" data-i18n="allProductsSubtitle">Explora nuestra colección completa — diseñada para comodidad y durabilidad.</p>
       </header>
       <div class="products-grid" id="productsGrid"></div>
     </section>
@@ -921,8 +948,8 @@
     <!-- About -->
     <section class="fade-up" id="about">
       <header>
-        <h2 class="section-title">About KYRIX</h2>
-        <p class="section-subtitle">KYRIX is a new streetwear label building essentials with clean silhouettes, premium fabrics, and bold attitude.</p>
+        <h2 class="section-title" data-i18n="aboutTitle">Sobre KYRIX</h2>
+        <p class="section-subtitle" data-i18n="aboutSubtitle">KYRIX es una marca de streetwear que crea básicos con siluetas limpias, telas premium y actitud definida.</p>
       </header>
       <div class="featured-grid">
         <div class="card">
@@ -930,7 +957,7 @@
             <div class="tag">QUALITÉ</div>
             <h3 class="product-name">Material First</h3>
             <p>We work with refined fabrics that feel soft, hold shape, and age gracefully.</p>
-            <button class="btn-secondary" onclick="scrollToSection('#products')">Explore Collection</button>
+            <button class="btn-secondary" onclick="scrollToSection('#products')" data-i18n="exploreCollection">Explorar colección</button>
           </div>
         </div>
         <div class="card">
@@ -938,7 +965,7 @@
             <div class="tag">SUSTAINABLE</div>
             <h3 class="product-name">Conscious production</h3>
             <p>Every garment is crafted with low-impact processes that reduce waste and energy use.</p>
-            <button class="btn-secondary" onclick="scrollToSection('#about')">Learn More</button>
+            <button class="btn-secondary" onclick="scrollToSection('#about')" data-i18n="learnMore">Saber más</button>
           </div>
         </div>
       </div>
@@ -960,7 +987,7 @@
           <p class="price" id="modalPrice">0€</p>
         </div>
         <div class="selector">
-          <label for="sizeSelect">Talla</label>
+          <label for="sizeSelect" data-i18n="sizeLabel">Talla</label>
           <select id="sizeSelect">
             <option value="S">S</option>
             <option value="M" selected>M</option>
@@ -969,8 +996,8 @@
           </select>
         </div>
         <div class="modal-actions">
-          <button class="btn-full" id="modalAdd">Agregar al carrito</button>
-          <button class="btn-secondary" onclick="closeProductModal()">Cerrar</button>
+          <button class="btn-full" id="modalAdd" data-i18n="addToCart">Agregar al carrito</button>
+          <button class="btn-secondary" onclick="closeProductModal()" data-i18n="close">Cerrar</button>
         </div>
       </div>
     </div>
@@ -980,15 +1007,15 @@
   <div class="drawer" id="cartDrawer" aria-hidden="true">
     <div class="drawer-panel" role="region" aria-label="Carrito">
       <div class="drawer-header">
-        <div class="drawer-title">Tu carrito</div>
-        <button class="drawer-close" id="drawerClose" aria-label="Cerrar carrito">×</button>
+        <div class="drawer-title" data-i18n="cartTitle">Tu carrito</div>
+        <button class="drawer-close" id="drawerClose" aria-label="Cerrar carrito" data-i18n="close">×</button>
       </div>
       <div class="cart-items" id="cartItems"></div>
       <div class="cart-summary">
-        <h3>Resumen</h3>
+        <h3 data-i18n="summaryTitle">Resumen</h3>
         <p id="cartQuantity">0 artículos</p>
         <p class="total" id="cartTotal">0€</p>
-        <button class="checkout" id="checkoutBtn">Finalizar compra</button>
+        <button class="checkout" id="checkoutBtn" data-i18n="checkout">Finalizar compra</button>
       </div>
     </div>
   </div>
@@ -998,7 +1025,7 @@
       <div class="footer-brand">
         <h3>KYRIX</h3>
         <p>Streetwear diseñado para el día a día. Envíos globales. Atención premium.</p>
-        <p>Contacto: <a href="mailto:hello@kyrix.xyz">hello@kyrix.xyz</a></p>
+        <p><span data-i18n="contactLabel">Contacto:</span> <a href="mailto:hello@kyrix.xyz">hello@kyrix.xyz</a></p>
       </div>
       <div class="footer-links">
         <a href="#hero">Inicio</a>
@@ -1007,7 +1034,7 @@
         <a href="#">Términos</a>
       </div>
       <div>
-        <h3 class="section-title" style="font-size:1.1rem;">Redes</h3>
+        <h3 class="section-title" style="font-size:1.1rem;" data-i18n="socialTitle">Redes</h3>
         <div class="footer-social">
           <a class="social-btn" href="#" aria-label="Instagram">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1097,9 +1124,173 @@
       }
     ];
 
+    const translations = {
+      es: {
+        title: 'KYRIX • Streetwear para el futuro',
+        heroSubtitle: 'Streetwear para el futuro — piezas minimalistas, sensación premium.',
+        shopNow: 'Comprar ahora',
+        featuredTitle: 'Drops destacados',
+        featuredSubtitle: 'Descubre las piezas que marcan la temporada. Cada prenda está diseñada para un estilo impecable.',
+        allProductsTitle: 'Todos los productos',
+        allProductsSubtitle: 'Explora nuestra colección completa — diseñada para comodidad y durabilidad.',
+        aboutTitle: 'Sobre KYRIX',
+        aboutSubtitle: 'KYRIX es una marca de streetwear que crea básicos con siluetas limpias, telas premium y actitud definida.',
+        exploreCollection: 'Explorar colección',
+        learnMore: 'Saber más',
+        cartTitle: 'Tu carrito',
+        cartEmpty: 'Tu carrito está vacío.',
+        summaryTitle: 'Resumen',
+        items: count => `${count} artículo${count !== 1 ? 's' : ''}`,
+        total: 'Total',
+        checkout: 'Finalizar compra',
+        checkoutAlert: 'Gracias por tu compra. Funcionalidad de checkout no disponible en demo.',
+        contact: 'Contacto',
+        contactLabel: 'Contacto:',
+        socialTitle: 'Redes',
+        home: 'Inicio',
+        shop: 'Tienda',
+        about: 'Sobre nosotros',
+        close: 'Cerrar',
+        sizeLabel: 'Talla',
+        addToCart: 'Agregar al carrito',
+        learnMoreBtn: 'Saber más',
+        exploreBtn: 'Explorar colección',
+        emptyCart: 'Tu carrito está vacío.'
+      },
+      en: {
+        title: 'KYRIX • Streetwear for the future',
+        heroSubtitle: 'Streetwear for the future — minimal pieces, premium feel.',
+        shopNow: 'Shop now',
+        featuredTitle: 'Featured drops',
+        featuredSubtitle: 'Discover the pieces that define the season. Every item is designed for a clean fit.',
+        allProductsTitle: 'All products',
+        allProductsSubtitle: 'Browse our full collection — built for comfort and durability.',
+        aboutTitle: 'About KYRIX',
+        aboutSubtitle: 'KYRIX is a streetwear label crafting essentials with clean silhouettes and premium fabrics.',
+        exploreCollection: 'Explore collection',
+        learnMore: 'Learn more',
+        cartTitle: 'Your cart',
+        cartEmpty: 'Your cart is empty.',
+        summaryTitle: 'Summary',
+        items: count => `${count} item${count !== 1 ? 's' : ''}`,
+        total: 'Total',
+        checkout: 'Checkout',
+        checkoutAlert: 'Thanks for your purchase. Checkout is not available in this demo.',
+        contact: 'Contact',
+        contactLabel: 'Contact:',
+        socialTitle: 'Social',
+        home: 'Home',
+        shop: 'Shop',
+        about: 'About',
+        close: 'Close',
+        sizeLabel: 'Size',
+        addToCart: 'Add to cart',
+        learnMoreBtn: 'Learn more',
+        exploreBtn: 'Explore collection',
+        emptyCart: 'Your cart is empty.'
+      },
+      fr: {
+        title: 'KYRIX • Streetwear pour le futur',
+        heroSubtitle: 'Streetwear pour le futur — pièces minimalistes, sensation premium.',
+        shopNow: 'Acheter maintenant',
+        featuredTitle: 'Sélections en vedette',
+        featuredSubtitle: 'Découvrez les pièces qui définissent la saison. Chaque article est conçu pour une coupe nette.',
+        allProductsTitle: 'Tous les produits',
+        allProductsSubtitle: 'Parcourez notre collection complète — conçue pour le confort et la durabilité.',
+        aboutTitle: 'À propos de KYRIX',
+        aboutSubtitle: 'KYRIX est une marque streetwear qui crée des essentiels avec des silhouettes épurées et des tissus premium.',
+        exploreCollection: 'Explorer la collection',
+        learnMore: 'En savoir plus',
+        cartTitle: 'Votre panier',
+        cartEmpty: 'Votre panier est vide.',
+        summaryTitle: 'Résumé',
+        items: count => `${count} article${count !== 1 ? 's' : ''}`,
+        total: 'Total',
+        checkout: 'Paiement',
+        checkoutAlert: 'Merci pour votre achat. Le paiement n\'est pas disponible dans cette démo.',
+        contact: 'Contact',
+        contactLabel: 'Contact :',
+        socialTitle: 'Réseaux',
+        home: 'Accueil',
+        shop: 'Boutique',
+        about: 'À propos',
+        close: 'Fermer',
+        sizeLabel: 'Taille',
+        addToCart: 'Ajouter au panier',
+        learnMoreBtn: 'En savoir plus',
+        exploreBtn: 'Explorer la collection',
+        emptyCart: 'Votre panier est vide.'
+      },
+      it: {
+        title: 'KYRIX • Streetwear per il futuro',
+        heroSubtitle: 'Streetwear per il futuro — pezzi minimal, sensazione premium.',
+        shopNow: 'Acquista ora',
+        featuredTitle: 'Novità in evidenza',
+        featuredSubtitle: 'Scopri i capi che definiscono la stagione. Ogni articolo è progettato per una vestibilità pulita.',
+        allProductsTitle: 'Tutti i prodotti',
+        allProductsSubtitle: 'Sfoglia la nostra collezione completa — progettata per comfort e resistenza.',
+        aboutTitle: 'Su KYRIX',
+        aboutSubtitle: 'KYRIX è un brand streetwear che realizza capi essenziali con silhouette pulite e tessuti premium.',
+        exploreCollection: 'Esplora collezione',
+        learnMore: 'Scopri di più',
+        cartTitle: 'Il tuo carrello',
+        cartEmpty: 'Il tuo carrello è vuoto.',
+        summaryTitle: 'Riepilogo',
+        items: count => `${count} articolo${count !== 1 ? 'i' : ''}`,
+        total: 'Totale',
+        checkout: 'Checkout',
+        checkoutAlert: 'Grazie per il tuo acquisto. Il checkout non è disponibile in questa demo.',
+        contact: 'Contatto',
+        contactLabel: 'Contatto:',
+        socialTitle: 'Social',
+        home: 'Home',
+        shop: 'Shop',
+        about: 'Chi siamo',
+        close: 'Chiudi',
+        sizeLabel: 'Taglia',
+        addToCart: 'Aggiungi al carrello',
+        learnMoreBtn: 'Scopri di più',
+        exploreBtn: 'Esplora la collezione',
+        emptyCart: 'Il tuo carrello è vuoto.'
+      },
+      ma: {
+        title: 'KYRIX • Streetwear dyal lmosta9bal',
+        heroSubtitle: 'Streetwear dyal lmosta9bal — pieces minimalistes, feel premium.',
+        shopNow: 'Chri daba',
+        featuredTitle: 'Les pièces mzyanin',
+        featuredSubtitle: 'Chouf les pièces li kayn fiha style d saison. Koul wa7ed mdézn b fit nazaf.',
+        allProductsTitle: 'Kolchi',
+        allProductsSubtitle: 'Tqder tlqé kolchi f la collection — m3amra l comfort w l t9a.',
+        aboutTitle: '3la KYRIX',
+        aboutSubtitle: 'KYRIX hiya marque streetwear li kat3mal basics b silhouettes nazfa w tissus premium.',
+        exploreCollection: 'Chouf la collection',
+        learnMore: 'T3rf ktar',
+        cartTitle: 'Sambrok',
+        cartEmpty: 'Sambrok khawi.',
+        summaryTitle: 'Résumé',
+        items: count => `${count} 7aja${count !== 1 ? 't' : ''}`,
+        total: 'Total',
+        checkout: 'Checkout',
+        checkoutAlert: 'Shukran 3la chri dyalk. Checkout ma mzal ma kayn f had demo.',
+        contact: 'Contact',
+        contactLabel: 'Contact:',
+        socialTitle: 'Social',
+        home: 'Home',
+        shop: 'Shop',
+        about: '3la',
+        close: 'Sdd',
+        sizeLabel: 'Talla',
+        addToCart: 'Zid f sambrok',
+        learnMoreBtn: 'T3rf ktar',
+        exploreBtn: 'Chouf la collection',
+        emptyCart: 'Sambrok khawi.'
+      }
+    };
+
     const state = {
       cart: [],
-      activeProduct: null
+      activeProduct: null,
+      lang: 'es'
     };
 
     const elements = {
@@ -1124,14 +1315,51 @@
       modalPrice: document.getElementById('modalPrice'),
       sizeSelect: document.getElementById('sizeSelect'),
       modalAdd: document.getElementById('modalAdd'),
+      langSelect: document.getElementById('langSelect'),
       scrollButtons: document.querySelectorAll('[data-scroll-to]'),
       fadeElements: document.querySelectorAll('.fade-up')
     };
 
+    const supportedLangs = ['es', 'en', 'fr', 'it', 'ma'];
+
+    function getInitialLang() {
+      const saved = localStorage.getItem('kyrix-lang');
+      if (saved && supportedLangs.includes(saved)) return saved;
+      const nav = (navigator.language || 'es').slice(0, 2).toLowerCase();
+      return supportedLangs.includes(nav) ? nav : 'es';
+    }
+
+    function setLanguage(lang) {
+      if (!supportedLangs.includes(lang)) lang = 'es';
+      state.lang = lang;
+      localStorage.setItem('kyrix-lang', lang);
+      if (elements.langSelect) elements.langSelect.value = lang;
+      applyLanguage(lang);
+      renderSections();
+    }
+
+    function applyLanguage(lang) {
+      const locale = translations[lang] || translations.es;
+      document.documentElement.lang = lang === 'ma' ? 'ar' : lang;
+      document.title = locale.title;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        const value = locale[key];
+        if (!value) return;
+        el.textContent = typeof value === 'function' ? value(state.cart.length) : value;
+      });
+
+      if (elements.modalClose) elements.modalClose.setAttribute('aria-label', locale.close);
+      if (elements.drawerClose) elements.drawerClose.setAttribute('aria-label', locale.close);
+      if (elements.cartBtn) elements.cartBtn.setAttribute('aria-label', locale.cartTitle);
+    }
+
     /* --- Initialization --- */
     document.addEventListener('DOMContentLoaded', () => {
       setCurrentYear();
-      renderSections();
+      state.lang = getInitialLang();
+      setLanguage(state.lang);
       setupScrollObservers();
       setupEvents();
       applyInitialHash();
@@ -1148,6 +1376,8 @@
     }
 
     function renderProductCards(container, list) {
+      const locale = translations[state.lang] || translations.es;
+
       container.innerHTML = list
         .map(
           product => `
@@ -1160,8 +1390,8 @@
                 <h3 class="product-name">${product.name}</h3>
                 <p class="product-price">${product.price}€</p>
                 <div class="card-actions">
-                  <button class="btn-secondary" data-action="view" data-id="${product.id}">Ver</button>
-                  <button class="btn-ghost" data-action="add" data-id="${product.id}">Añadir</button>
+                  <button class="btn-secondary" data-action="view" data-id="${product.id}">${locale.learnMoreBtn}</button>
+                  <button class="btn-ghost" data-action="add" data-id="${product.id}">${locale.addToCart}</button>
                 </div>
               </div>
             </article>
@@ -1204,6 +1434,11 @@
     }
 
     function setupEvents() {
+      if (elements.langSelect) {
+        elements.langSelect.value = state.lang;
+        elements.langSelect.addEventListener('change', event => setLanguage(event.target.value));
+      }
+
       elements.scrollButtons.forEach(btn => {
         btn.addEventListener('click', () => scrollToSection(btn.dataset.scrollTo));
       });
@@ -1224,7 +1459,8 @@
       elements.cartBtn.addEventListener('click', toggleCart);
       elements.drawerClose.addEventListener('click', toggleCart);
       elements.checkoutBtn.addEventListener('click', () => {
-        alert('Gracias por tu compra. Funcionalidad de checkout no disponible en demo.');
+        const locale = translations[state.lang] || translations.es;
+        alert(locale.checkoutAlert);
       });
 
       elements.modalClose.addEventListener('click', closeProductModal);
@@ -1297,8 +1533,10 @@
 
     function updateCartUI() {
       const count = state.cart.length;
+      const locale = translations[state.lang] || translations.es;
+
       elements.cartCount.textContent = count;
-      elements.cartQuantity.textContent = `${count} artículo${count !== 1 ? 's' : ''}`;
+      elements.cartQuantity.textContent = locale.items(count);
 
       const total = state.cart.reduce((sum, item) => sum + item.price, 0);
       elements.cartTotal.textContent = `${total}€`;
@@ -1319,7 +1557,7 @@
         .join('');
 
       if (!count) {
-        elements.cartItems.innerHTML = '<p style="color: var(--muted);">Tu carrito está vacío.</p>';
+        elements.cartItems.innerHTML = `<p style="color: var(--muted);">${locale.cartEmpty}</p>`;
       }
     }
 
