@@ -406,6 +406,121 @@
             box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
         }
 
+        /* Categories Section */
+        .categories-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 212, 255, 0.02) 100%);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .category-card {
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .category-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.2);
+            background: rgba(0, 212, 255, 0.1) !important;
+        }
+
+        .category-icon {
+            font-size: 3.5em;
+            color: #00d4ff;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.2) rotate(5deg);
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+        }
+
+        .category-card h3 {
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .category-card p {
+            font-size: 0.95em;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .category-count {
+            font-size: 0.85em;
+            background: rgba(0, 212, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.4);
+        }
+
+        /* Category Products Section */
+        .category-products-section {
+            padding: 60px 20px;
+            min-height: 100vh;
+        }
+
+        .category-header {
+            margin-bottom: 50px;
+            animation: slideInUp 0.6s ease;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(0, 212, 255, 0.15);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            border-radius: 25px;
+            color: #00d4ff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .category-description {
+            font-size: 1.1em;
+            opacity: 0.8;
+            margin-top: 15px;
+        }
+
+        .category-products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Shopping Cart */
         .cart {
             position: fixed;
@@ -1514,6 +1629,24 @@
                 width: 100%;
                 justify-content: center;
             }
+
+            /* Categories responsive */
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .category-card {
+                padding: 20px;
+            }
+
+            .category-icon {
+                font-size: 2.5em;
+            }
+
+            .category-products-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1528,6 +1661,24 @@
             .stat-number {
                 font-size: 2em;
             }
+
+            /* Categories responsive small */
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-card h3 {
+                font-size: 1.2em;
+            }
+
+            nav a {
+                display: none;
+            }
+
+            nav a:nth-child(1),
+            nav a:nth-child(5) {
+                display: inline;
+            }
         }
     </style>
     <!-- PayPal SDK -->
@@ -1538,6 +1689,7 @@
         <div class="glass">
             <a href="#hero">Home</a>
             <a href="#products">Products</a>
+            <a href="#categories">Categories</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
             <div class="cart-icon" onclick="toggleCart()">
@@ -1692,6 +1844,71 @@
                 <h3 class="product-title">Tablet Pro</h3>
                 <p class="product-price">$599.99</p>
                 <button class="add-to-cart" onclick="addToCart('Tablet Pro', 599.99)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories">
+        <div class="container">
+            <h2 class="section-title">Browse by Category</h2>
+            <div class="categories-grid">
+                <div class="category-card glass" onclick="viewCategory('audio')">
+                    <div class="category-icon">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <h3>Audio</h3>
+                    <p>Headphones & Speakers</p>
+                    <span class="category-count">3 products</span>
+                </div>
+                <div class="category-card glass" onclick="viewCategory('gaming')">
+                    <div class="category-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Gaming</h3>
+                    <p>Gaming Gear & Accessories</p>
+                    <span class="category-count">4 products</span>
+                </div>
+                <div class="category-card glass" onclick="viewCategory('accessories')">
+                    <div class="category-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>Accessories</h3>
+                    <p>Phone & Tech Accessories</p>
+                    <span class="category-count">3 products</span>
+                </div>
+                <div class="category-card glass" onclick="viewCategory('wearables')">
+                    <div class="category-icon">
+                        <i class="fas fa-watch"></i>
+                    </div>
+                    <h3>Wearables</h3>
+                    <p>Smart Devices</p>
+                    <span class="category-count">2 products</span>
+                </div>
+                <div class="category-card glass" onclick="viewCategory('other')">
+                    <div class="category-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Other</h3>
+                    <p>Cameras & More</p>
+                    <span class="category-count">2 products</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Products Page -->
+    <section class="category-products-section" id="categoryProducts" style="display: none;">
+        <div class="container">
+            <div class="category-header">
+                <button class="back-btn" onclick="backToCategories()">
+                    <i class="fas fa-arrow-left"></i> Back to Categories
+                </button>
+                <h2 class="section-title" id="categoryTitle">Category Products</h2>
+                <p class="category-description" id="categoryDescription"></p>
+            </div>
+            <div class="category-products-grid" id="categoryProductsGrid">
+                <!-- Productos se mostrarán aquí dinámicamente -->
             </div>
         </div>
     </section>
@@ -2759,6 +2976,99 @@
 
         // Initialize chat
         setTimeout(initChat, 1000);
+
+        // Categories functionality
+        const categoryNames = {
+            'audio': 'Audio & Sound',
+            'gaming': 'Gaming Gear',
+            'accessories': 'Accessories',
+            'wearables': 'Wearables',
+            'other': 'Other Products'
+        };
+
+        const categoryDescriptions = {
+            'audio': 'Discover our premium audio collection with the best headphones and speakers for your listening experience.',
+            'gaming': 'Level up your gaming with our high-performance gaming peripherals and accessories.',
+            'accessories': 'Complete your tech setup with our selection of quality accessories and add-ons.',
+            'wearables': 'Stay connected with our innovative wearable technology.',
+            'other': 'Explore our collection of cameras, tablets, and other cutting-edge electronics.'
+        };
+
+        let allProducts = [
+            { id: 1, name: 'Wireless Earbuds', price: 129.99, category: 'audio', rating: 4.8, image: '<i class="fas fa-headphones"></i>' },
+            { id: 2, name: 'Gaming Mouse', price: 79.99, category: 'gaming', rating: 4.7, image: '<i class="fas fa-mouse"></i>' },
+            { id: 3, name: 'LED Lights', price: 49.99, category: 'accessories', rating: 4.6, image: '<i class="fas fa-lightbulb"></i>' },
+            { id: 4, name: 'Phone Accessories', price: 29.99, category: 'accessories', rating: 4.5, image: '<i class="fas fa-mobile-alt"></i>' },
+            { id: 5, name: 'Smart Gadgets', price: 199.99, category: 'wearables', rating: 4.9, image: '<i class="fas fa-robot"></i>' },
+            { id: 6, name: 'Portable Speakers', price: 89.99, category: 'audio', rating: 4.7, image: '<i class="fas fa-volume-up"></i>' },
+            { id: 7, name: 'Mechanical Keyboard', price: 149.99, category: 'gaming', rating: 4.8, image: '<i class="fas fa-keyboard"></i>' },
+            { id: 8, name: 'Gaming Controller', price: 79.99, category: 'gaming', rating: 4.6, image: '<i class="fas fa-gamepad"></i>' },
+            { id: 9, name: 'Smart Watch', price: 299.99, category: 'wearables', rating: 4.9, image: '<i class="fas fa-watch"></i>' },
+            { id: 10, name: 'Action Camera', price: 249.99, category: 'other', rating: 4.8, image: '<i class="fas fa-camera"></i>' },
+            { id: 11, name: 'Tablet Pro', price: 599.99, category: 'other', rating: 4.9, image: '<i class="fas fa-tablet-alt"></i>' },
+            { id: 12, name: 'USB Hub', price: 39.99, category: 'accessories', rating: 4.5, image: '<i class="fas fa-plug"></i>' },
+            { id: 13, name: 'Studio Headphones', price: 199.99, category: 'audio', rating: 4.8, image: '<i class="fas fa-headphones"></i>' },
+            { id: 14, name: 'Gaming Headset', price: 159.99, category: 'gaming', rating: 4.7, image: '<i class="fas fa-headphones"></i>' },
+            { id: 15, name: 'Screen Protector', price: 15.99, category: 'accessories', rating: 4.6, image: '<i class="fas fa-shield-alt"></i>' },
+            { id: 16, name: 'Fitness Band', price: 129.99, category: 'wearables', rating: 4.7, image: '<i class="fas fa-heart"></i>' }
+        ];
+
+        function viewCategory(category) {
+            // Mostrar sección de productos de categoría
+            document.getElementById('products').style.display = 'none';
+            document.getElementById('categories').style.display = 'none';
+            document.getElementById('categoryProducts').style.display = 'block';
+
+            // Actualizar título y descripción
+            document.getElementById('categoryTitle').textContent = categoryNames[category] || 'Category Products';
+            document.getElementById('categoryDescription').textContent = categoryDescriptions[category] || '';
+
+            // Filtrar productos de la categoría
+            const categoryProducts = allProducts.filter(p => p.category === category);
+
+            // Renderizar productos
+            const grid = document.getElementById('categoryProductsGrid');
+            grid.innerHTML = '';
+
+            categoryProducts.forEach((product, index) => {
+                const isInWishlist = wishlist.includes(product.id);
+                const card = document.createElement('div');
+                card.className = 'product-card glass';
+                card.style.animation = `slideInUp 0.5s ease ${index * 0.1}s forwards`;
+                card.style.opacity = '0';
+                card.innerHTML = `
+                    <div class="product-card-header">
+                        <div class="product-image">${product.image}</div>
+                        <button class="wishlist-heart ${isInWishlist ? 'active' : ''}" onclick="toggleProductWishlist(${product.id})">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <h3 class="product-title">${product.name}</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            ${Array(5).fill('<i class="fas fa-star"></i>').join('')}
+                        </div>
+                        <span class="rating-text">${product.rating}</span>
+                    </div>
+                    <p class="product-price">$${product.price}</p>
+                    <button class="add-to-cart" onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function backToCategories() {
+            // Mostrar secciones originales
+            document.getElementById('products').style.display = 'block';
+            document.getElementById('categories').style.display = 'block';
+            document.getElementById('categoryProducts').style.display = 'none';
+
+            // Scroll to categories
+            document.getElementById('categories').scrollIntoView({ behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
