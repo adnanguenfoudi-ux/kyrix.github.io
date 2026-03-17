@@ -2181,36 +2181,9 @@
             });
         });
 
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.product-card').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Cerrar carrito al hacer click afuera (pero no en botones de cantidad ni en "Add to Cart")
-        document.addEventListener('click', (e) => {
-            const cart = document.getElementById('cart');
-            const cartIcon = document.querySelector('.cart-icon');
-            const isQuantityBtn = e.target.closest('.quantity-btn');
-            const isAddToCartBtn = e.target.closest('.add-to-cart');
-            
-            if (!cart.contains(e.target) && !cartIcon.contains(e.target) && !isQuantityBtn && !isAddToCartBtn && cart.classList.contains('open')) {
-                cart.classList.remove('open');
-            }
-        });
+        // Fade in animation on scroll - será inicializado en DOMContentLoaded
+        let cardObserver;
+        let cartClickListener = null;
 
         // Sincronizar carrito entre pestañas
         window.addEventListener('storage', (e) => {
@@ -2568,10 +2541,15 @@
         }
 
         function setupFilters(products) {
-            document.getElementById('searchInput').addEventListener('input', filterProducts.bind(null, products));
-            document.getElementById('categoryFilter').addEventListener('change', filterProducts.bind(null, products));
-            document.getElementById('priceFilter').addEventListener('change', filterProducts.bind(null, products));
-            document.getElementById('sortFilter').addEventListener('change', filterProducts.bind(null, products));
+            const searchInput = document.getElementById('searchInput');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const priceFilter = document.getElementById('priceFilter');
+            const sortFilter = document.getElementById('sortFilter');
+            
+            if (searchInput) searchInput.addEventListener('input', () => filterProducts(products));
+            if (categoryFilter) categoryFilter.addEventListener('change', () => filterProducts(products));
+            if (priceFilter) priceFilter.addEventListener('change', () => filterProducts(products));
+            if (sortFilter) sortFilter.addEventListener('change', () => filterProducts(products));
         }
 
         function filterProducts(products) {
@@ -2606,18 +2584,20 @@
             icon.style.transform = answer.classList.contains('open') ? 'rotate(180deg)' : '';
         }
 
-        // Animate stats on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-                    entry.target.classList.add('animated');
-                    const target = parseInt(entry.target.dataset.target);
-                    animateCounter(entry.target, 0, target, 2000);
-                }
-            });
-        }, { threshold: 0.1 });
+        // Animate stats on scroll - inicializar en DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                        entry.target.classList.add('animated');
+                        const target = parseInt(entry.target.dataset.target);
+                        animateCounter(entry.target, 0, target, 2000);
+                    }
+                });
+            }, { threshold: 0.1 });
 
-        document.querySelectorAll('.stat-number').forEach(stat => observer.observe(stat));
+            document.querySelectorAll('.stat-number').forEach(stat => statsObserver.observe(stat));
+        }, { once: true });
 
         function animateCounter(element, start, end, duration) {
             const range = end - start;
@@ -2636,8 +2616,45 @@
 
         // Initialize on load
         document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar productos
             initializeProducts();
             document.getElementById('wishlistCount').textContent = wishlist.length;
+            
+            // Inicializar observer para animaciones de cards después de que se rendericen
+            setTimeout(() => {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                cardObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.product-card').forEach(card => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'all 0.5s ease';
+                    cardObserver.observe(card);
+                });
+            }, 100);
+            
+            // Configurar detector de clicks para cerrar carrito
+            document.addEventListener('click', (e) => {
+                const cart = document.getElementById('cart');
+                const cartIcon = document.querySelector('.cart-icon');
+                const isQuantityBtn = e.target.closest('.quantity-btn');
+                const isAddToCartBtn = e.target.closest('.add-to-cart');
+                
+                if (cart && cartIcon && !cart.contains(e.target) && !cartIcon.contains(e.target) && !isQuantityBtn && !isAddToCartBtn && cart.classList.contains('open')) {
+                    cart.classList.remove('open');
+                }
+            });
         });
 
         // Cookies consent
