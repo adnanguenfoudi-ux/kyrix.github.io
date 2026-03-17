@@ -516,9 +516,31 @@
             margin-bottom: 20px;
         }
 
+        .total-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
         .total-price {
             font-size: 1.3em;
             color: #00d4ff;
+            margin: 0;
+        }
+
+        #paypal-button-container {
+            flex-shrink: 0;
+            max-width: 200px;
+        }
+
+        #paypal-button-container .paypal-buttons {
+            min-width: 150px;
+        }
+
+        #paypal-button-container .paypal-button {
+            font-size: 12px !important;
+            padding: 8px 12px !important;
         }
 
         .checkout-btn {
@@ -723,9 +745,11 @@
                 <!-- Cart items will be added here -->
             </div>
             <div class="cart-total">
-                <p class="total-price">Total: $<span id="totalPrice">0.00</span></p>
+                <div class="total-row">
+                    <p class="total-price">Total: $<span id="totalPrice">0.00</span></p>
+                    <div id="paypal-button-container"></div>
+                </div>
             </div>
-            <div id="paypal-button-container"></div>
         </div>
     </div>
 
