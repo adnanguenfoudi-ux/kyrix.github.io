@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wearables - KYRIX STORE</title>
-    <meta name="description" content="Stay connected with our innovative wearable technology.">
-    <meta name="keywords" content="wearables, smartwatch, fitness band, smart gadgets">
+    <title>Auriculares - KYRIX STORE</title>
+    <meta name="description" content="Explora nuestra colección premium de auriculares de alta calidad.">
+    <meta name="keywords" content="auriculares, headphones, audio, sonido">
     
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -34,7 +34,10 @@
         .product-card { padding: 20px; text-align: center; opacity: 0; animation: slideInUp 0.6s ease forwards; }
         .product-card:nth-child(1) { animation-delay: 0.1s; }
         .product-card:nth-child(2) { animation-delay: 0.2s; }
-        @keyframes slideInUp { from { opacity: 0; transform: translateY(50px); } }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
         .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2); }
         .product-image { width: 150px; height: 150px; margin: 0 auto 20px; background: rgba(255, 255, 255, 0.1); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 3em; color: #00d4ff; }
         .product-title { font-size: 1.3em; margin-bottom: 10px; }
@@ -44,16 +47,6 @@
         .product-price { font-size: 1.5em; color: #00d4ff; margin-bottom: 20px; font-weight: bold; }
         .add-to-cart { padding: 10px 20px; background: rgba(0, 212, 255, 0.2); border: 1px solid rgba(0, 212, 255, 0.5); border-radius: 25px; color: #ffffff; cursor: pointer; font-weight: 500; transition: all 0.3s ease; }
         .add-to-cart:hover { background: rgba(0, 212, 255, 0.4); box-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
-        .subcategories-section { padding: 50px 20px; text-align: center; }
-        .subcategories-title { font-size: 2em; margin-bottom: 40px; color: #00d4ff; text-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
-        .subcategories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 0 20px; margin-bottom: 50px; }
-        .subcategory-card { position: relative; padding: 40px 20px; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; text-decoration: none; color: #ffffff; cursor: pointer; transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); overflow: hidden; }
-        .subcategory-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent); transition: left 0.6s ease; }
-        .subcategory-card:hover { transform: translateY(-10px); background: rgba(0, 212, 255, 0.1); border-color: rgba(0, 212, 255, 0.5); box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2); }
-        .subcategory-card:hover::before { left: 100%; }
-        .subcategory-icon { font-size: 4em; margin-bottom: 15px; display: block; }
-        .subcategory-name { font-size: 1.5em; font-weight: 600; margin-bottom: 10px; color: #00d4ff; }
-        .subcategory-products { font-size: 0.9em; color: #aaa; margin-top: 15px; }
         .cart { position: fixed; top: 0; right: -400px; width: 400px; height: 100vh; z-index: 1001; transition: right 0.5s ease; overflow-y: auto; }
         .cart.open { right: 0; }
         .cart .glass-strong { height: 100%; display: flex; flex-direction: column; }
@@ -79,8 +72,8 @@
 <body>
     <nav>
         <div class="glass">
-            <a href="index.html">Home</a>
-            <a href="index.html#categories">All Categories</a>
+            <a href="index.html">Inicio</a>
+            <a href="audio.html">← Atrás</a>
             <div class="cart-icon" onclick="toggleCart()">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="cart-count" id="cartCount">0</span>
@@ -89,29 +82,17 @@
     </nav>
 
     <section class="category-header">
-        <a href="index.html#categories" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Categories</a>
-        <h1>⌚ Wearables</h1>
-        <p>Stay connected with our innovative wearable technology.</p>
+        <a href="audio.html" class="back-btn"><i class="fas fa-arrow-left"></i> Volver a Audio</a>
+        <h1>🎧 Auriculares Premium</h1>
+        <p>Descubre nuestra selección de auriculares de alta calidad para una experiencia de audio inmersiva.</p>
     </section>
-
-    <!-- Subcategories Section -->
-    <div class="subcategories-section">
-        <h2 class="subcategories-title">Shop by Subcategory</h2>
-        <div class="subcategories-grid">
-            <a href="smartwatches.html" class="subcategory-card">
-                <span class="subcategory-icon">⌚</span>
-                <div class="subcategory-name">Smartwatches</div>
-                <div class="subcategory-products">Elite & Performance Models</div>
-            </a>
-        </div>
-    </div>
 
     <div class="container"><div class="products-grid" id="productsGrid"></div></div>
 
     <div class="cart" id="cart">
         <div class="glass-strong">
             <div class="cart-header">
-                <h3 class="cart-title">Shopping Cart</h3>
+                <h3 class="cart-title">Carrito</h3>
                 <div class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></div>
             </div>
             <div class="cart-items" id="cartItems"></div>
@@ -127,18 +108,20 @@
         function addToCart(n, p) { const e = cart.find(i => i.name === n); if (e) e.quantity++; else cart.push({ name: n, price: p, quantity: 1 }); updateCart(); saveCartToStorage(); document.getElementById('cart').classList.add('open'); }
         function updateCart() { const c = document.getElementById('cartItems'), cnt = document.getElementById('cartCount'), tp = document.getElementById('totalPrice'); c.innerHTML = ''; cartCount = 0; totalPrice = 0; cart.forEach((i, x) => { cartCount += i.quantity; totalPrice += i.price * i.quantity; const el = document.createElement('div'); el.className = 'cart-item'; el.innerHTML = `<div class="cart-item-image"><i class="fas fa-shopping-bag"></i></div><div class="cart-item-info"><p class="cart-item-title">${i.name}</p><p class="cart-item-price">$${i.price.toFixed(2)}</p></div><div class="quantity-selector"><button class="quantity-btn" onclick="changeQuantity(${x}, -1)">-</button><span class="quantity">${i.quantity}</span><button class="quantity-btn" onclick="changeQuantity(${x}, 1)">+</button></div>`; c.appendChild(el); }); cnt.textContent = cartCount; tp.textContent = totalPrice.toFixed(2); }
         function changeQuantity(x, c) { cart[x].quantity += c; if (cart[x].quantity <= 0) cart.splice(x, 1); updateCart(); saveCartToStorage(); }
-        function initPayPalButtons() { if (typeof paypal !== 'undefined') { const con = document.getElementById('paypal-button-container'); con.innerHTML = ''; if (cart.length === 0) { con.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;">El carrito está vacío</p>'; return; } paypal.Buttons({ createOrder: (d, a) => { const items = cart.map(i => ({ name: i.name, unit_amount: { currency_code: "USD", value: i.price.toFixed(2) }, quantity: i.quantity.toString() })); return a.order.create({ intent: "CAPTURE", purchase_units: [{ amount: { currency_code: "USD", value: totalPrice.toFixed(2), breakdown: { item_total: { currency_code: "USD", value: totalPrice.toFixed(2) } } }, items }] }); }, onApprove: (d, a) => a.order.capture().then(det => { cart = []; updateCart(); saveCartToStorage(); setTimeout(() => document.getElementById('cart').classList.remove('open'), 1500); }), onError: e => {} }).render('#paypal-button-container'); } }
+        function initPayPalButtons() { if (typeof paypal !== 'undefined') { const con = document.getElementById('paypal-button-container'); con.innerHTML = ''; if (cart.length === 0) { con.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;">Carrito vacío</p>'; return; } paypal.Buttons({ createOrder: (d, a) => { const items = cart.map(i => ({ name: i.name, unit_amount: { currency_code: "USD", value: i.price.toFixed(2) }, quantity: i.quantity.toString() })); return a.order.create({ intent: "CAPTURE", purchase_units: [{ amount: { currency_code: "USD", value: totalPrice.toFixed(2), breakdown: { item_total: { currency_code: "USD", value: totalPrice.toFixed(2) } } }, items }] }); }, onApprove: (d, a) => a.order.capture().then(det => { cart = []; updateCart(); saveCartToStorage(); setTimeout(() => document.getElementById('cart').classList.remove('open'), 1500); }), onError: e => {} }).render('#paypal-button-container'); } }
         updateCart = (function(orig) { return function() { orig.call(this); initPayPalButtons(); }; })(updateCart);
         loadCartFromStorage();
         document.addEventListener('DOMContentLoaded', () => initPayPalButtons());
         const products = [
-            { id: 5, name: 'Smart Gadgets', price: 199.99, category: 'wearables', rating: 4.9, image: '<i class="fas fa-robot"></i>' },
-            { id: 9, name: 'Smart Watch', price: 299.99, category: 'wearables', rating: 4.9, image: '<i class="fas fa-watch"></i>' },
-            { id: 16, name: 'Fitness Band', price: 129.99, category: 'wearables', rating: 4.7, image: '<i class="fas fa-heart"></i>' }
+            { id: 101, name: 'Auriculares Studio Pro', price: 299.99, rating: 4.9, image: '<i class="fas fa-headphones"></i>' },
+            { id: 102, name: 'Auriculares Inalámbricos', price: 149.99, rating: 4.7, image: '<i class="fas fa-headphones"></i>' },
+            { id: 103, name: 'Auriculares Gaming', price: 179.99, rating: 4.8, image: '<i class="fas fa-headphones"></i>' },
+            { id: 104, name: 'Auriculares Deportivos', price: 99.99, rating: 4.6, image: '<i class="fas fa-headphones"></i>' },
+            { id: 105, name: 'Auriculares Cancelación Ruido', price: 249.99, rating: 4.9, image: '<i class="fas fa-headphones"></i>' }
         ];
-        function renderProducts(prods) { const g = document.getElementById('productsGrid'); g.innerHTML = ''; prods.forEach(p => { const c = document.createElement('div'); c.className = 'product-card glass'; c.innerHTML = `<div class="product-image">${p.image}</div><h3 class="product-title">${p.name}</h3><div class="product-rating"><div class="stars">${Array(5).fill('<i class="fas fa-star"></i>').join('')}</div><span class="rating-text">${p.rating}</span></div><p class="product-price">$${p.price}</p><button class="add-to-cart" onclick="addToCart('${p.name}', ${p.price})">Add to Cart</button>`; g.appendChild(c); }); }
+        function renderProducts(prods) { const g = document.getElementById('productsGrid'); g.innerHTML = ''; prods.forEach(p => { const c = document.createElement('div'); c.className = 'product-card glass'; c.innerHTML = `<div class="product-image">${p.image}</div><h3 class="product-title">${p.name}</h3><div class="product-rating"><div class="stars">${Array(5).fill('<i class="fas fa-star"></i>').join('')}</div><span class="rating-text">${p.rating}</span></div><p class="product-price">$${p.price}</p><button class="add-to-cart" onclick="addToCart('${p.name}', ${p.price})">Agregar al Carrito</button>`; g.appendChild(c); }); }
         document.addEventListener('DOMContentLoaded', () => renderProducts(products));
-        const s = document.createElement('style'); s.textContent = `@keyframes slideInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } } @keyframes slideInNotification { from { opacity: 0; transform: translateX(400px); } to { opacity: 1; transform: translateX(0); } }`; document.head.appendChild(s);
+        const s = document.createElement('style'); s.textContent = `@keyframes slideInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }`; document.head.appendChild(s);
     </script>
 </body>
 </html>
