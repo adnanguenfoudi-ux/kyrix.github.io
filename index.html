@@ -619,6 +619,8 @@
             }
         }
     </style>
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
 </head>
 <body>
     <nav>
@@ -722,7 +724,7 @@
             <div class="cart-total">
                 <p class="total-price">Total: $<span id="totalPrice">0.00</span></p>
             </div>
-            <button class="checkout-btn">Checkout</button>
+            <div id="paypal-button-container"></div>
         </div>
     </div>
 
@@ -925,6 +927,101 @@
 
         // Cargar carrito al cargar la página
         loadCartFromStorage();
+
+        // Inicializar PayPal Buttons
+        function initPayPalButtons() {
+            if (typeof paypal !== 'undefined') {
+                const container = document.getElementById('paypal-button-container');
+                
+                // Limpiar contenedor anterior
+                container.innerHTML = '';
+                
+                // Solo mostrar si hay items en el carrito
+                if (cart.length === 0) {
+                    container.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;">El carrito está vacío</p>';
+                    return;
+                }
+
+                paypal.Buttons({
+                    createOrder: (data, actions) => {
+                        // Crear items para el pedido
+                        const items = cart.map(item => ({
+                            name: item.name,
+                            unit_amount: {
+                                currency_code: "USD",
+                                value: item.price.toFixed(2)
+                            },
+                            quantity: item.quantity.toString()
+                        }));
+
+                        return actions.order.create({
+                            intent: "CAPTURE",
+                            purchase_units: [{
+                                amount: {
+                                    currency_code: "USD",
+                                    value: totalPrice.toFixed(2),
+                                    breakdown: {
+                                        item_total: {
+                                            currency_code: "USD",
+                                            value: totalPrice.toFixed(2)
+                                        }
+                                    }
+                                },
+                                items: items
+                            }]
+                        });
+                    },
+                    onApprove: (data, actions) => {
+                        return actions.order.capture().then((details) => {
+                            showNotification(`¡Pago exitoso! Pedido: ${details.id}`);
+                            console.log('Detalles del pedido:', details);
+                            
+                            // Limpiar carrito
+                            cart = [];
+                            updateCart();
+                            saveCartToStorage();
+                            
+                            // Obtener información del comprador
+                            const payer = details.payer;
+                            const orderData = {
+                                orderId: details.id,
+                                buyer: {
+                                    name: payer.name.given_name + ' ' + payer.name.surname,
+                                    email: payer.email_address
+                                },
+                                amount: totalPrice,
+                                items: cart,
+                                timestamp: new Date().toISOString()
+                            };
+                            
+                            // Guardar información del pedido
+                            console.log('Información del pedido:', orderData);
+                            
+                            // Cerrar carrito
+                            setTimeout(() => {
+                                document.getElementById('cart').classList.remove('open');
+                            }, 1500);
+                        });
+                    },
+                    onError: (err) => {
+                        showNotification('Error en el pago. Intenta nuevamente.');
+                        console.error('Error en PayPal:', err);
+                    }
+                }).render('#paypal-button-container');
+            }
+        }
+
+        // Inicializar PayPal al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            initPayPalButtons();
+        });
+
+        // Re-inicializar PayPal cuando se actualice el carrito
+        const originalUpdateCart = updateCart;
+        updateCart = function() {
+            originalUpdateCart.call(this);
+            initPayPalButtons();
+        };
 
         // Estilos para las animaciones de notificación
         const style = document.createElement('style');
