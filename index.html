@@ -3014,60 +3014,24 @@
         ];
 
         function viewCategory(category) {
-            // Mostrar sección de productos de categoría
-            document.getElementById('products').style.display = 'none';
-            document.getElementById('categories').style.display = 'none';
-            document.getElementById('categoryProducts').style.display = 'block';
-
-            // Actualizar título y descripción
-            document.getElementById('categoryTitle').textContent = categoryNames[category] || 'Category Products';
-            document.getElementById('categoryDescription').textContent = categoryDescriptions[category] || '';
-
-            // Filtrar productos de la categoría
-            const categoryProducts = allProducts.filter(p => p.category === category);
-
-            // Renderizar productos
-            const grid = document.getElementById('categoryProductsGrid');
-            grid.innerHTML = '';
-
-            categoryProducts.forEach((product, index) => {
-                const isInWishlist = wishlist.includes(product.id);
-                const card = document.createElement('div');
-                card.className = 'product-card glass';
-                card.style.animation = `slideInUp 0.5s ease ${index * 0.1}s forwards`;
-                card.style.opacity = '0';
-                card.innerHTML = `
-                    <div class="product-card-header">
-                        <div class="product-image">${product.image}</div>
-                        <button class="wishlist-heart ${isInWishlist ? 'active' : ''}" onclick="toggleProductWishlist(${product.id})">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                    </div>
-                    <h3 class="product-title">${product.name}</h3>
-                    <div class="product-rating">
-                        <div class="stars">
-                            ${Array(5).fill('<i class="fas fa-star"></i>').join('')}
-                        </div>
-                        <span class="rating-text">${product.rating}</span>
-                    </div>
-                    <p class="product-price">$${product.price}</p>
-                    <button class="add-to-cart" onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
-                `;
-                grid.appendChild(card);
-            });
-
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Map category names to their HTML pages
+            const categoryPages = {
+                'audio': 'audio.html',
+                'gaming': 'gaming.html',
+                'accessories': 'accessories.html',
+                'wearables': 'wearables.html',
+                'other': 'other.html'
+            };
+            
+            // Redirect to the category page
+            if (categoryPages[category]) {
+                window.location.href = categoryPages[category];
+            }
         }
 
         function backToCategories() {
-            // Mostrar secciones originales
-            document.getElementById('products').style.display = 'block';
-            document.getElementById('categories').style.display = 'block';
-            document.getElementById('categoryProducts').style.display = 'none';
-
-            // Scroll to categories
-            document.getElementById('categories').scrollIntoView({ behavior: 'smooth' });
+            // Go back to index.html and scroll to categories section
+            window.location.href = 'index.html#categories';
         }
     </script>
 </body>
