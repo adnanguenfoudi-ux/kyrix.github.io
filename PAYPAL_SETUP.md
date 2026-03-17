@@ -1,4 +1,4 @@
-# Configuración de PayPal en KYRIX STORE
+e# Configuración de PayPal en KYRIX STORE
 
 ## Pasos para obtener tu Client ID de PayPal
 
