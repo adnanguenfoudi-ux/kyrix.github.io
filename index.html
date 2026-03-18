@@ -748,6 +748,19 @@
             color: #ffffff;
             font-weight: 500;
             cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            margin-top: 15px;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .checkout-btn:active {
+            transform: translateY(0);
+        }
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
@@ -2269,8 +2282,9 @@
             <div class="cart-total">
                 <div class="total-row">
                     <p class="total-price">Total: $<span id="totalPrice">0.00</span></p>
-                    <div id="paypal-button-container"></div>
+                    <button class="checkout-btn" onclick="goToCheckout()">Pagar</button>
                 </div>
+                <div id="paypal-button-container" style="display: none;"></div>
             </div>
         </div>
     </div>
@@ -2451,6 +2465,18 @@
             }
             updateCart();
             saveCartToStorage(); // Guardar automáticamente cuando cambia cantidad
+        }
+
+        function goToCheckout() {
+            if (cart.length === 0) {
+                showNotification('El carrito está vacío');
+                return;
+            }
+            // Guardar el carrito en localStorage para la página de checkout
+            localStorage.setItem('kyrixCheckoutCart', JSON.stringify(cart));
+            localStorage.setItem('kyrixCheckoutTotal', totalPrice.toFixed(2));
+            // Redirigir a la página de checkout
+            window.location.href = 'checkout.html';
         }
 
         // Smooth scroll para los enlaces de navegación
