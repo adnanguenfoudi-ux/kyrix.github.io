@@ -341,7 +341,10 @@
         </div>
 
         <div id="checkoutContent">
-            <!-- Content will be loaded dynamically -->
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin" style="font-size: 2em; color: #00d4ff; margin-bottom: 20px;"></i>
+                <p>Cargando checkout...</p>
+            </div>
         </div>
     </div>
 
@@ -350,10 +353,16 @@
         let checkoutTotal = 0;
 
         function loadCheckoutData() {
+            console.log('Loading checkout data...');
+
             const savedCart = localStorage.getItem('kyrixCheckoutCart');
             const savedTotal = localStorage.getItem('kyrixCheckoutTotal');
 
+            console.log('Saved cart:', savedCart);
+            console.log('Saved total:', savedTotal);
+
             if (!savedCart || !savedTotal) {
+                console.log('No checkout data found, showing empty cart');
                 showEmptyCart();
                 return;
             }
@@ -362,11 +371,16 @@
                 checkoutCart = JSON.parse(savedCart);
                 checkoutTotal = parseFloat(savedTotal);
 
+                console.log('Parsed cart:', checkoutCart);
+                console.log('Parsed total:', checkoutTotal);
+
                 if (checkoutCart.length === 0) {
+                    console.log('Cart is empty');
                     showEmptyCart();
                     return;
                 }
 
+                console.log('Rendering checkout');
                 renderCheckout();
             } catch (e) {
                 console.error('Error loading checkout data:', e);
@@ -380,6 +394,9 @@
                 <div class="empty-cart">
                     <h2>Carrito vacío</h2>
                     <p>No hay productos en tu carrito de compras.</p>
+                    <p style="color: #cccccc; font-size: 0.9em; margin-bottom: 20px;">
+                        Para acceder al checkout, primero agrega productos a tu carrito desde la tienda.
+                    </p>
                     <a href="index.html">Ir a la tienda</a>
                 </div>
             `;
