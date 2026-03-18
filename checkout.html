@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - KYRIX STORE</title>
+    <meta name="description" content="Complete your purchase at KYRIX STORE - Secure checkout with PayPal">
+    <meta name="keywords" content="checkout, payment, paypal, kyrix store">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-000000-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-000000-2');
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .checkout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .checkout-header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .checkout-title {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ffffff, #00d4ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .checkout-subtitle {
+            font-size: 1.1em;
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .checkout-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .order-summary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .summary-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+
+        .order-items {
+            margin-bottom: 30px;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-image {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .item-price {
+            color: #00d4ff;
+            font-weight: 600;
+        }
+
+        .item-quantity {
+            color: #cccccc;
+            font-size: 0.9em;
+        }
+
+        .order-total {
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            padding-top: 20px;
+            text-align: right;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .total-label {
+            font-size: 1.1em;
+            color: #cccccc;
+        }
+
+        .total-amount {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .payment-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .payment-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+
+        .payment-methods {
+            display: grid;
+            gap: 20px;
+        }
+
+        .payment-method {
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .payment-method:hover {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .payment-method.selected {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .payment-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #00d4ff;
+        }
+
+        .payment-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .payment-desc {
+            font-size: 0.9em;
+            color: #cccccc;
+        }
+
+        .paypal-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .paypal-title {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #cccccc;
+        }
+
+        #paypal-button-container {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 8px;
+            color: #00ff00;
+            font-size: 0.9em;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #cccccc;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 100px 20px;
+            color: #cccccc;
+        }
+
+        .empty-cart h2 {
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .empty-cart a {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #00d4ff;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .empty-cart a:hover {
+            background: #0099cc;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .checkout-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .checkout-title {
+                font-size: 2em;
+            }
+
+            .order-summary,
+            .payment-section {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .checkout-container {
+                padding: 15px;
+            }
+
+            .checkout-title {
+                font-size: 1.8em;
+            }
+
+            .order-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .item-image {
+                align-self: center;
+            }
+        }
+    </style>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=ARQy3k69iOFXS0oSHfo315y2yo7tvgyMU6snRZtU6Lv83rRmNCSkPH08J4KLR96PCx9fHaKxQNTis1sp&currency=USD"></script>
+</head>
+<body>
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Volver a la tienda
+            </a>
+            <h1 class="checkout-title">Checkout</h1>
+            <p class="checkout-subtitle">Completa tu compra de forma segura</p>
+        </div>
+
+        <div id="checkoutContent">
+            <!-- Content will be loaded dynamically -->
+        </div>
+    </div>
+
+    <script>
+        let checkoutCart = [];
+        let checkoutTotal = 0;
+
+        function loadCheckoutData() {
+            const savedCart = localStorage.getItem('kyrixCheckoutCart');
+            const savedTotal = localStorage.getItem('kyrixCheckoutTotal');
+
+            if (!savedCart || !savedTotal) {
+                showEmptyCart();
+                return;
+            }
+
+            try {
+                checkoutCart = JSON.parse(savedCart);
+                checkoutTotal = parseFloat(savedTotal);
+
+                if (checkoutCart.length === 0) {
+                    showEmptyCart();
+                    return;
+                }
+
+                renderCheckout();
+            } catch (e) {
+                console.error('Error loading checkout data:', e);
+                showEmptyCart();
+            }
+        }
+
+        function showEmptyCart() {
+            const content = document.getElementById('checkoutContent');
+            content.innerHTML = `
+                <div class="empty-cart">
+                    <h2>Carrito vacío</h2>
+                    <p>No hay productos en tu carrito de compras.</p>
+                    <a href="index.html">Ir a la tienda</a>
+                </div>
+            `;
+        }
+
+        function renderCheckout() {
+            const content = document.getElementById('checkoutContent');
+
+            // Render order summary
+            let orderItemsHTML = '';
+            checkoutCart.forEach(item => {
+                orderItemsHTML += `
+                    <div class="order-item">
+                        <div class="item-image">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-price">$${item.price.toFixed(2)}</div>
+                            <div class="item-quantity">Cantidad: ${item.quantity}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            content.innerHTML = `
+                <div class="checkout-content">
+                    <div class="order-summary">
+                        <h3 class="summary-title">Resumen del pedido</h3>
+                        <div class="order-items">
+                            ${orderItemsHTML}
+                        </div>
+                        <div class="order-total">
+                            <div class="total-row">
+                                <span class="total-label">Total a pagar:</span>
+                                <span class="total-amount">$${checkoutTotal.toFixed(2)}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="payment-section">
+                        <h3 class="payment-title">Método de pago</h3>
+                        <div class="payment-methods">
+                            <div class="payment-method selected" onclick="selectPaymentMethod(this)">
+                                <div class="payment-icon">
+                                    <i class="fab fa-paypal"></i>
+                                </div>
+                                <div class="payment-name">PayPal</div>
+                                <div class="payment-desc">Pago seguro con PayPal</div>
+                            </div>
+                            <div class="payment-method" onclick="selectPaymentMethod(this)">
+                                <div class="payment-icon">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <div class="payment-name">Tarjeta de Crédito</div>
+                                <div class="payment-desc">Visa, MasterCard, American Express</div>
+                            </div>
+                        </div>
+
+                        <div class="paypal-section">
+                            <div class="paypal-title">Completa tu pago con PayPal</div>
+                            <div id="paypal-button-container"></div>
+                            <div class="secure-badge">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Pago 100% seguro y protegido</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Initialize PayPal
+            initializePayPal();
+        }
+
+        function selectPaymentMethod(element) {
+            // Remove selected class from all methods
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.classList.remove('selected');
+            });
+
+            // Add selected class to clicked method
+            element.classList.add('selected');
+        }
+
+        function initializePayPal() {
+            const container = document.getElementById('paypal-button-container');
+            if (!container) return;
+
+            // Clear any existing buttons
+            container.innerHTML = '';
+
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: checkoutTotal.toFixed(2)
+                            },
+                            description: `Compra en KYRIX STORE - ${checkoutCart.length} producto(s)`
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        // Payment successful
+                        showPaymentSuccess(details);
+                    });
+                },
+                onError: function(err) {
+                    console.error('PayPal error:', err);
+                    showPaymentError();
+                }
+            }).render('#paypal-button-container');
+        }
+
+        function showPaymentSuccess(details) {
+            // Clear cart
+            localStorage.removeItem('kyrixCart');
+            localStorage.removeItem('kyrixCheckoutCart');
+            localStorage.removeItem('kyrixCheckoutTotal');
+
+            const content = document.getElementById('checkoutContent');
+            content.innerHTML = `
+                <div style="text-align: center; padding: 100px 20px;">
+                    <div style="font-size: 4em; margin-bottom: 20px; color: #00ff00;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2 style="color: #00ff00; margin-bottom: 20px;">¡Pago exitoso!</h2>
+                    <p style="color: #cccccc; margin-bottom: 30px;">
+                        Gracias por tu compra, ${details.payer.name.given_name || 'Cliente'}.<br>
+                        Tu pedido ha sido procesado correctamente.
+                    </p>
+                    <div style="background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+                        <p style="color: #00d4ff; font-weight: 600;">ID de transacción: ${details.id}</p>
+                        <p style="color: #cccccc;">Total pagado: $${checkoutTotal.toFixed(2)}</p>
+                    </div>
+                    <a href="index.html" style="display: inline-block; padding: 15px 30px; background: #00d4ff; color: #000000; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
+                        <i class="fas fa-home"></i> Volver a la tienda
+                    </a>
+                </div>
+            `;
+        }
+
+        function showPaymentError() {
+            const content = document.getElementById('checkoutContent');
+            content.innerHTML = `
+                <div style="text-align: center; padding: 100px 20px;">
+                    <div style="font-size: 4em; margin-bottom: 20px; color: #ff4444;">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <h2 style="color: #ff4444; margin-bottom: 20px;">Error en el pago</h2>
+                    <p style="color: #cccccc; margin-bottom: 30px;">
+                        Ha ocurrido un error al procesar tu pago. Por favor, inténtalo de nuevo.
+                    </p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <button onclick="renderCheckout()" style="padding: 15px 30px; background: #00d4ff; color: #000000; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                            <i class="fas fa-redo"></i> Intentar de nuevo
+                        </button>
+                        <a href="index.html" style="padding: 15px 30px; background: rgba(255, 255, 255, 0.1); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 600; border: 1px solid rgba(255, 255, 255, 0.2);">
+                            <i class="fas fa-home"></i> Volver a la tienda
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCheckoutData();
+        });
+    </script>
+</body>
+</html>
