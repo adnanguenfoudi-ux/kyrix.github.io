@@ -59,7 +59,7 @@ https://kaylex.es/
 ### Opción 2: Local
 ```bash
 # Clonar el repositorio
-git clone https://github.com/adnanguenfoudi-ux.github.io.git
+git clone https://github.com/adnanguenfoudi-ux/kyrix.github.io.git
 
 # Abrir index.html en el navegador
 # O usar un servidor local
