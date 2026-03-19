@@ -2,7 +2,7 @@
 
 Una tienda en línea moderna y futurista construida con HTML, CSS y JavaScript puro. Caracterizada por su diseño glassmorphism, animaciones suaves y integración completa con PayPal.
 
-![KAYLEX SHOP](https://adnanguenfoudi-ux.github.io/kyrix.github.io/)
+![KAYLEX SHOP](https://kaylex.es/)
 
 ## ✨ Características Principales
 
@@ -53,7 +53,7 @@ Una tienda en línea moderna y futurista construida con HTML, CSS y JavaScript p
 ### Opción 1: GitHub Pages (Recomendado)
 La tienda está desplegada automáticamente en:
 ```
-https://adnanguenfoudi-ux.github.io/kyrix.github.io/
+https://kaylex.es/
 ```
 
 ### Opción 2: Local
@@ -153,7 +153,7 @@ Este proyecto es de código abierto y está disponible bajo la [Licencia MIT](LI
 **KAYLEX SHOP**
 - Email: support@kaylexshop.com
 - GitHub: [@adnanguenfoudi-ux](https://github.com/adnanguenfoudi-ux)
-- Sitio Web: [kaylexshop.com](https://adnanguenfoudi-ux.github.io/kyrix.github.io/)
+- Sitio Web: [kaylex.es](https://kaylex.es/)
 
 ---
 
