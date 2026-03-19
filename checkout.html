@@ -388,6 +388,16 @@
             }
         }
 
+        // Función de prueba para cargar datos de ejemplo (solo para debugging)
+        function loadTestData() {
+            checkoutCart = [
+                { name: 'Wireless Earbuds', price: 129.99, quantity: 1 },
+                { name: 'Gaming Mouse', price: 79.99, quantity: 2 }
+            ];
+            checkoutTotal = 289.97;
+            renderCheckout();
+        }
+
         function showEmptyCart() {
             const content = document.getElementById('checkoutContent');
             content.innerHTML = `
@@ -397,7 +407,10 @@
                     <p style="color: #cccccc; font-size: 0.9em; margin-bottom: 20px;">
                         Para acceder al checkout, primero agrega productos a tu carrito desde la tienda.
                     </p>
-                    <a href="index.html">Ir a la tienda</a>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px;">
+                        <a href="index.html" style="padding: 12px 24px; background: #00d4ff; color: #000000; text-decoration: none; border-radius: 8px; font-weight: 600;">Ir a la tienda</a>
+                        <button onclick="loadTestData()" style="padding: 12px 24px; background: rgba(255, 255, 255, 0.1); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; font-weight: 600; cursor: pointer;">Cargar datos de prueba</button>
+                    </div>
                 </div>
             `;
         }

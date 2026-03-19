@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accesorios Teléfono - KYRIX STORE</title>
+    <title>Accesorios Teléfono - KAYLEX SHOP</title>
     <meta name="description" content="Accesorios de teléfono de alta calidad y durabilidad.">
     <meta name="keywords" content="accesorios teléfono, funda, protector">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -101,8 +101,8 @@
 
     <script>
         let cart = [], cartCount = 0, totalPrice = 0;
-        function loadCartFromStorage() { const s = localStorage.getItem('kyrixCart'); if (s) { try { cart = JSON.parse(s); updateCart(); } catch (e) {} } }
-        function saveCartToStorage() { try { localStorage.setItem('kyrixCart', JSON.stringify(cart)); } catch (e) {} }
+        function loadCartFromStorage() { const s = localStorage.getItem('kaylexCart'); if (s) { try { cart = JSON.parse(s); updateCart(); } catch (e) {} } }
+        function saveCartToStorage() { try { localStorage.setItem('kaylexCart', JSON.stringify(cart)); } catch (e) {} }
         function toggleCart() { document.getElementById('cart').classList.toggle('open'); }
         function addToCart(n, p) { const e = cart.find(i => i.name === n); if (e) e.quantity++; else cart.push({ name: n, price: p, quantity: 1 }); updateCart(); saveCartToStorage(); document.getElementById('cart').classList.add('open'); }
         function updateCart() { const c = document.getElementById('cartItems'), cnt = document.getElementById('cartCount'), tp = document.getElementById('totalPrice'); c.innerHTML = ''; cartCount = 0; totalPrice = 0; cart.forEach((i, x) => { cartCount += i.quantity; totalPrice += i.price * i.quantity; const el = document.createElement('div'); el.className = 'cart-item'; el.innerHTML = `<div class="cart-item-image"><i class="fas fa-shopping-bag"></i></div><div class="cart-item-info"><p class="cart-item-title">${i.name}</p><p class="cart-item-price">$${i.price.toFixed(2)}</p></div><div class="quantity-selector"><button class="quantity-btn" onclick="changeQuantity(${x}, -1)">-</button><span class="quantity">${i.quantity}</span><button class="quantity-btn" onclick="changeQuantity(${x}, 1)">+</button></div>`; c.appendChild(el); }); cnt.textContent = cartCount; tp.textContent = totalPrice.toFixed(2); }
